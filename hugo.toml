@@ -1,0 +1,70 @@
+baseURL = "https://toolcritic.co"
+locale = "en-us"
+title = "ToolCritic – Honest AI Tool Reviews"
+theme = "PaperMod"
+paginate = 10
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+
+[params]
+  env = "production"
+  title = "ToolCritic"
+  description = "Honest, in-depth reviews and comparisons of AI tools for creators, freelancers and small businesses."
+  keywords = ["AI tools", "AI reviews", "best AI tools", "AI comparison", "AI for creators"]
+  author = "ToolCritic Team"
+  DateFormat = "January 2, 2006"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  ShowToc = true
+  TocOpen = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+
+[params.homeInfoParams]
+  Title = "AI Tools — Reviewed & Ranked"
+  Content = "We test and compare the best AI tools so you don't have to. Find the right tool for your workflow, with honest reviews and real results."
+
+[params.cover]
+  hidden = false
+  hiddenInList = false
+  hiddenInSingle = false
+
+[menu]
+  [[menu.main]]
+    identifier = "reviews"
+    name = "Reviews"
+    url = "/reviews/"
+    weight = 10
+  [[menu.main]]
+    identifier = "comparisons"
+    name = "Comparisons"
+    url = "/comparisons/"
+    weight = 20
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 30
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 40
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[minify]
+  disableXML = true
+  minifyOutput = true
