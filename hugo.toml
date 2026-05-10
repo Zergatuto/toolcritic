@@ -59,6 +59,16 @@ buildFuture = false
     name = "About"
     url = "/about/"
     weight = 40
+  [[menu.main]]
+    identifier = "author"
+    name = "Author"
+    url = "/author/"
+    weight = 50
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 60
 
 [taxonomies]
   category = "categories"
