@@ -7,7 +7,9 @@
 
 ## Descripción General
 
-Dos sitios web de reseñas de herramientas IA, construidos con **Hugo + tema PaperMod**, monetizados con **links de afiliados con comisión recurrente** (30-45%).
+Dos sitios web de reseñas de herramientas IA, construidos con **Hugo + tema PaperMod**.
+**Modelo de monetización actual:** contenido patrocinado directo + display ads (Ezoic) — no afiliados.
+PartnerStack rechazó la cuenta por ser sitio nuevo. Se retomará cuando haya tráfico.
 
 | Dominio | Idioma | Carpeta | Dominio comprado en |
 |---|---|---|---|
@@ -16,7 +18,6 @@ Dos sitios web de reseñas de herramientas IA, construidos con **Hugo + tema Pap
 
 **Objetivo de ingresos:** $3,000/mes por sitio → $6,000/mes en total.
 **Plazo:** 3-4 meses.
-**Modelo:** Afiliados recurrentes (el visitante se suscribe a una herramienta IA → se cobra comisión mensual mientras siga suscrito).
 
 ---
 
@@ -30,72 +31,80 @@ El archivo `.github/workflows/hugo.yml` ya está configurado en los dos repos.
 
 ---
 
-## Nichos y Arquitectura de Contenido (2026-05-12)
+## Nichos y Arquitectura de Contenido
 
-**3 nichos + 1 formato transversal:**
+**3 nichos + 1 formato transversal (alternativas):**
 
 | Nicho | toolcritic.co | iaprobada.com | Por qué |
 |---|---|---|---|
+| Creators | `/creators/` | `/creadores/` | Sinergia con canales YouTube propios, arranque semana 1 |
 | Real estate | `/real-estate/` | `/inmobiliarias/` | Intención comercial alta, muy poco en español |
 | Ecommerce | `/ecommerce/` | `/tiendas-online/` | Shopify masivo en LatAm, sin cubrir en ES |
-| Creators | `/creators/` | `/creadores/` | Sinergia directa con canales YouTube propios |
-| Alternativas *(formato)* | `/alternatives/` o dentro de cada nicho | `/alternativas/` | SEO long-tail, transversal a los 3 nichos |
+| Alternativas *(formato)* | dentro de cada nicho | dentro de cada nicho | SEO long-tail, transversal |
 
-**Estrategia:** Inglés ataca keywords globales de nicho. Español ataca sub-nichos sin competencia (ej: "herramientas IA para captación inmobiliaria").
-
----
-
-## Estado Actual
-
-### toolcritic.co ✅ ACTIVO
-- Sitio Hugo + PaperMod configurado
-- DNS en Porkbun apuntando a GitHub Pages
-- Deploy automático funcionando
-- `content/about.md` creado
-
-### iaprobada.com ✅ ACTIVO
-- Sitio Hugo + PaperMod configurado
-- DNS propagado y verificado por GitHub Pages (2026-05-09)
-- HTTPS activo ("DNS check successful" confirmado)
-- Deploy automático funcionando (Actions en verde)
+**Estrategia:** Inglés ataca keywords globales de nicho. Español ataca sub-nichos sin competencia.
+**Alternativas:** no es un nicho separado — es un formato que refuerza todos los clusters.
 
 ---
 
-## Canales YouTube ✅ CREADOS
+## Estado Actual de los Sitios
 
-- `@ToolCritic` — inglés (cuenta Google dedicada al proyecto)
-- `@IAProbada` — español (misma cuenta Google)
-- Descripciones configuradas en ambos canales
-- Banners creados con Canva
+### Configuración técnica ✅
+- `languageCode = "es"` en iaprobada (HTML `lang="es"` correcto)
+- hreflang entre dominios configurado en `layouts/partials/extend_head.html`
+- Footer sin "Powered by Hugo & PaperMod" (override en `layouts/partials/footer.html`)
+- og:image default 1200×630 en `static/images/og-default.png` (ambos sitios)
+- RSS button oculto (`ShowRssButtonInSectionTermList = false`)
+- `generate_og_images.py` en `E:\Webpages\agent\` para regenerar imágenes OG
+- Enforce HTTPS: confirmar en GitHub Pages settings de cada repo
+
+### Carpetas de contenido activas
+```
+toolcritic.co/         iaprobada.com/
+├── /real-estate/      ├── /inmobiliarias/
+├── /ecommerce/        ├── /tiendas-online/
+├── /creators/         ├── /creadores/
+└── /reviews/          └── /resenas/
+```
+
+### Artículos publicados
+- `creators/otter-ai` + `creadores/otter-ai`
+- `creators/descript` + `creadores/descript`
 
 ---
 
-## Agente Web ✅ COMPLETO
+## Agente Web — Pipeline Completo
 
 **Ubicación:** `E:\Webpages\agent\`
+**Python:** usar siempre `py -3.11` (no `python`)
 
-| Agente | Archivo | Responsabilidad |
-|---|---|---|
-| Agente Web | `agent_web.py` | Artículos EN+ES → toolcritic.co + iaprobada.com |
-| Agente Video | `agent_video.py` | Videos → YouTube ToolCritic + IAProbada |
-| (Legacy) | `agent.py` | Hace ambas cosas, se mantiene por compatibilidad |
+| Archivo | Responsabilidad |
+|---|---|
+| `agent_web.py` | Orquestador — generate + verify + fix + publish |
+| `generator.py` | Artículos EN+ES con Claude API (niche-aware) |
+| `verifier.py` | Verifica placeholders, precios, superlativos, disclosure |
+| `corrector.py` | Auto-corrige: regex para blocks, Claude Haiku para warns |
+| `publisher.py` | Guarda archivos por nicho + git push |
+| `scraper.py` | Obtiene info del sitio de la herramienta |
 
-**Módulos compartidos:**
-- `scraper.py` — obtiene info de la herramienta desde su web
-- `generator.py` — artículos con Claude API (EN + ES)
-- `publisher.py` — guarda archivos y hace git push a ambos repos
-- `video_script_generator.py` — scripts de video con Claude API (EN + ES)
-- `video_creator_mpt.py` — crea MP4 via MoneyPrinterTurbo + FFmpeg audio merge
-- `video_creator.py` — solo se usa para generar thumbnails
-- `youtube_uploader.py` — sube videos a YouTube Data API v3
-
-**Archivo `.env` necesita:**
+### Pipeline automático
 ```
-ANTHROPIC_API_KEY=sk-ant-tu-clave-aqui
-TOOLCRITIC_PATH=E:\Webpages\toolcritic
-IAPROBADA_PATH=E:\Webpages\iaprobada
-VIDEOS_PATH=E:\Webpages\agent\videos
+generate → save draft → verify → fix (regex + Haiku) → re-verify → publish si pasa | draft si bloqueado
 ```
+Cero intervención humana en el flujo estándar. Solo interviene el usuario si hay bloqueos irresolubles.
+
+### Nichos disponibles
+`real-estate` | `ecommerce` | `creators` | `general`
+
+### Tipos de artículo
+`review` (por defecto) | `alternatives`
+
+### Prompt del agente — mejoras aplicadas (2026-05-12)
+- **`prompt_focus` por nicho:** instrucción específica de ángulo para cada nicho/idioma
+- **Creators EN:** foco en podcast/video repurposing, NO "meeting tool"
+- **Creators ES:** prueba de acentos latinoamericanos + mini-metodología
+- **Divulgación condicional:** distinta cuando hay o no hay link de afiliado
+- **CTA limpio:** "Visit [Tool]" con URL real cuando no hay afiliado
 
 ---
 
@@ -104,158 +113,91 @@ VIDEOS_PATH=E:\Webpages\agent\videos
 ```powershell
 cd "E:\Webpages\agent"
 
-# Reseña individual con nicho
-python agent_web.py generate --tool "Jasper AI" --url "https://jasper.ai" --niche real-estate --publish
-python agent_web.py generate --tool "Shopify Magic" --url "https://shopify.com" --niche ecommerce --publish
-python agent_web.py generate --tool "Descript" --url "https://descript.com" --niche creators --publish
+# Reseña con nicho + publish automático (pipeline completo)
+py -3.11 agent_web.py generate --tool "Castmagic" --url "https://castmagic.io" --niche creators --publish
+py -3.11 agent_web.py generate --tool "Lofty" --url "https://lofty.com" --niche real-estate --publish
+py -3.11 agent_web.py generate --tool "Shopify Magic" --url "https://shopify.com" --niche ecommerce --publish
 
-# Artículo de alternativas (formato transversal)
-python agent_web.py generate --type alternatives --tool "Jasper AI" --url "https://jasper.ai" --niche real-estate --publish
+# Artículo de alternativas
+py -3.11 agent_web.py generate --type alternatives --tool "Otter.ai" --url "https://otter.ai" --niche creators --publish
 
-# Modo borrador (con checklist de verificación humana)
-python agent_web.py generate --tool "Copy.ai" --url "https://copy.ai" --niche ecommerce
-python agent_web.py approve copy-ai
+# Modo borrador (revisar antes de publicar)
+py -3.11 agent_web.py generate --tool "Copy.ai" --url "https://copy.ai" --niche ecommerce
+py -3.11 agent_web.py approve copy-ai
 
 # Con links de afiliado
-python agent_web.py generate --tool "Surfer SEO" --url "https://surferseo.com" --niche creators --affiliate-en "https://link-en" --affiliate-es "https://link-es" --publish
+py -3.11 agent_web.py generate --tool "Surfer SEO" --url "https://surferseo.com" --niche creators --affiliate-en "https://link-en" --affiliate-es "https://link-es" --publish
 ```
-
-**Nichos disponibles:** `real-estate` | `ecommerce` | `creators` | `general`
-**Tipos de artículo:** `review` (por defecto) | `alternatives`
-
----
-
-## MoneyPrinterTurbo
-
-**Ubicación:** `E:\Webpages\MoneyPrinterTurbo\`
-- Servicio REST en `http://127.0.0.1:8080`
-- Config en `config.toml` — usa litellm + Claude Haiku + Pexels API
-- **Arrancar antes de generar videos:**
-  ```powershell
-  cd E:\Webpages\MoneyPrinterTurbo
-  venv\Scripts\activate
-  $env:ANTHROPIC_API_KEY="sk-ant-..."
-  python main.py
-  ```
-- El agente lo arranca automáticamente si no está corriendo
-
-**⚠️ MPT será reemplazado:** El nuevo pipeline usará Together AI (Flux) + Ken Burns (FFmpeg) + Edge TTS. Más rápido, sin bugs, sin Pexels genérico.
-
----
-
-## Programas de Afiliados
-
-**Cuenta PartnerStack creada** — perfil de red pendiente de aprobación (toolcritic.co)
-
-| Herramienta | Comisión | Estado | Plataforma |
-|---|---|---|---|
-| Jasper AI | — | ❌ Sin programa activo | jasper.ai |
-| Copy.ai | 45% | ❌ Sin programa activo | copy.ai |
-| Synthesia | 25% recurrente | ❌ Skip — solo PayPal | synthesia.io |
-| Writesonic | 30% recurrente de por vida | ⏳ Esperando aprobación | PartnerStack |
-| Frase | 30% recurrente | ⏳ Esperando aprobación | PartnerStack |
-| Surfer SEO | 25% recurrente | ⏳ Esperando aprobación | PartnerStack |
-| GetResponse | 40-60% recurrente 12 meses | ⏳ Esperando aprobación | PartnerStack |
-| Prezi | 50% por suscripción | ⏳ Esperando aprobación | PartnerStack |
-| Castmagic | 30% recurrente 18 meses | ⏳ Esperando aprobación | PartnerStack |
-| ElevenLabs | 22% recurrente 12 meses | ⏳ Aplicado 2026-05-10 | PartnerStack |
-| Gamma | 30% primer año | ⏳ Aplicado 2026-05-10 | PartnerStack |
-| MeetGeek | 30% recurrente de por vida | ⏳ Aplicado 2026-05-10 | PartnerStack |
-| Reclaim.ai | 40% recurrente 12 meses | ⏳ Aplicado 2026-05-10 | PartnerStack |
-| Descript | $25 por conversión | ⏳ Aplicado 2026-05-10 | PartnerStack |
-| Pictory | 20% recurrente | ⏳ Aplicado 2026-05-10 | pictory.ai |
-
-Para reemplazar placeholder `[ADD_AFFILIATE_LINK]` / `[AGREGAR_LINK_AFILIADO]` con el link real cuando llegue aprobación.
-
----
-
-## Estrategia de Contenido
-
-- **Tipos de artículos:** Reseñas individuales, comparativas ("X vs Y"), listicles ("Top 7 herramientas para..."), alternativas ("Alternativas a X")
-- **Ritmo:** 3-4 artículos/día + videos en cada sitio/canal con el agente
-- **Revisión humana:** Mínima — el agente genera contenido de calidad suficiente para publicar directo
-
-**Lista de herramientas prioritarias:**
-
-| Herramienta | Categoría | URL |
-|---|---|---|
-| Jasper AI | Escritura IA | jasper.ai |
-| Writesonic | Escritura IA | writesonic.com |
-| Copy.ai | Escritura IA | copy.ai |
-| Frase | SEO + Escritura | frase.io |
-| Synthesia | Video IA | synthesia.io |
-| Pictory | Video IA | pictory.ai |
-| Descript | Video/Audio IA | descript.com |
-| Midjourney | Imágenes IA | midjourney.com |
-| Leonardo AI | Imágenes IA | leonardo.ai |
-| ElevenLabs | Voz IA | elevenlabs.io |
-| Murf AI | Voz IA | murf.ai |
-| Notion AI | Productividad | notion.so |
-| Otter.ai | Transcripción | otter.ai |
-| Grammarly | Escritura | grammarly.com |
-| Surfer SEO | SEO IA | surferseo.com |
-
-**Calendario sugerido:**
-- Semana 1-2: 2-3 artículos/día (período de calentamiento)
-- Semana 3+: 3-4 artículos/día constante
-- Mezclar tipos: no solo reseñas — intercalar comparativas y listicles
-
----
-
-## Protección Anti-Ban Google (E-E-A-T)
-
-### Páginas existentes en ambos sitios ✅
-- Página de autor
-- Página About
-- Página de Contacto
-- Página de Privacidad / Términos
-- Google Search Console configurado + sitemaps enviados
-
-### En el agente (ya aplicado)
-- Artículos en primera persona plural ("During our testing...", "We found...")
-- Ratings no perfectos (evitar 9+/10 salvo casos excepcionales)
-- Incluir contras reales en cada reseña
-- Variar estructura ligeramente entre artículos
 
 ---
 
 ## Plan de Contenido — Primeras 3 Semanas
 
-### Semana 1 — Creators
-| # | Herramienta | Tipo | Comando |
-|---|---|---|---|
-| 1 | Otter.ai | review | `--tool "Otter.ai" --url "https://otter.ai" --niche creators` |
-| 2 | Descript | review | `--tool "Descript" --url "https://descript.com" --niche creators` |
-| 3 | Castmagic | review | `--tool "Castmagic" --url "https://castmagic.io" --niche creators` |
-| 4 | OpusClip | review | `--tool "OpusClip" --url "https://opus.pro" --niche creators` |
-| 5 | Alternatives to Otter.ai | alternatives | `--type alternatives --tool "Otter.ai" --url "https://otter.ai" --niche creators` |
+### Semana 1 — Creators ✅ en progreso
+| # | Herramienta | Estado |
+|---|---|---|
+| 1 | Otter.ai | ✅ Publicado |
+| 2 | Descript | ✅ Publicado |
+| 3 | Castmagic | ⏳ Pendiente |
+| 4 | OpusClip | ⏳ Pendiente |
+| 5 | Alternatives to Otter.ai | ⏳ Pendiente |
 
 ### Semana 2 — Real Estate
-| # | Herramienta | Tipo | Comando |
-|---|---|---|---|
-| 6 | Lofty | review | `--tool "Lofty" --url "https://lofty.com" --niche real-estate` |
-| 7 | Structurely | review | `--tool "Structurely" --url "https://structurely.com" --niche real-estate` |
-| 8 | Canva | review | `--tool "Canva" --url "https://canva.com" --niche real-estate` |
-| 9 | ChatGPT | review | `--tool "ChatGPT" --url "https://openai.com/chatgpt" --niche real-estate` |
-| 10 | Best AI tools for real estate | listicle | *(manual o añadir comando listicle al agente)* |
+| # | Herramienta | Comando |
+|---|---|---|
+| 6 | Lofty | `--tool "Lofty" --url "https://lofty.com" --niche real-estate` |
+| 7 | Structurely | `--tool "Structurely" --url "https://structurely.com" --niche real-estate` |
+| 8 | Canva | `--tool "Canva" --url "https://canva.com" --niche real-estate` |
+| 9 | ChatGPT | `--tool "ChatGPT" --url "https://openai.com/chatgpt" --niche real-estate` |
+| 10 | Best AI tools for real estate | listicle *(pendiente añadir al agente)* |
 
 ### Semana 3 — Ecommerce
-| # | Herramienta | Tipo | Comando |
-|---|---|---|---|
-| 11 | Shopify Magic | review | `--tool "Shopify Magic" --url "https://shopify.com" --niche ecommerce` |
-| 12 | Describely | review | `--tool "Describely" --url "https://describely.ai" --niche ecommerce` |
-| 13 | Tidio | review | `--tool "Tidio" --url "https://tidio.com" --niche ecommerce` |
-| 14 | Klaviyo | review | `--tool "Klaviyo" --url "https://klaviyo.com" --niche ecommerce` |
-| 15 | Alternatives to Jasper | alternatives | `--type alternatives --tool "Jasper AI" --url "https://jasper.ai" --niche ecommerce` |
+| # | Herramienta | Comando |
+|---|---|---|
+| 11 | Shopify Magic | `--tool "Shopify Magic" --url "https://shopify.com" --niche ecommerce` |
+| 12 | Describely | `--tool "Describely" --url "https://describely.ai" --niche ecommerce` |
+| 13 | Tidio | `--tool "Tidio" --url "https://tidio.com" --niche ecommerce` |
+| 14 | Klaviyo | `--tool "Klaviyo" --url "https://klaviyo.com" --niche ecommerce` |
+| 15 | Alternatives to Jasper | `--type alternatives --tool "Jasper AI" --url "https://jasper.ai" --niche ecommerce` |
+
+---
+
+## Programas de Afiliados
+
+**PartnerStack:** rechazado por sitio nuevo. Retomar cuando haya tráfico.
+
+| Herramienta | Comisión | Estado |
+|---|---|---|
+| Writesonic | 30% recurrente | ⏳ Aplicado PartnerStack |
+| Frase | 30% recurrente | ⏳ Aplicado PartnerStack |
+| Surfer SEO | 25% recurrente | ⏳ Aplicado PartnerStack |
+| GetResponse | 40-60% recurrente | ⏳ Aplicado PartnerStack |
+| Castmagic | 30% recurrente 18 meses | ⏳ Aplicado PartnerStack |
+| ElevenLabs | 22% recurrente 12 meses | ⏳ Aplicado PartnerStack |
+| Gamma | 30% primer año | ⏳ Aplicado PartnerStack |
+| MeetGeek | 30% recurrente | ⏳ Aplicado PartnerStack |
+| Reclaim.ai | 40% recurrente 12 meses | ⏳ Aplicado PartnerStack |
+| Descript | $25 por conversión | ⏳ Aplicado PartnerStack |
+| Pictory | 20% recurrente | ⏳ Aplicado pictory.ai |
+
+---
+
+## Protección Anti-Ban Google (E-E-A-T)
+
+- Páginas de autor, About, Contacto, Privacidad/Términos en ambos sitios ✅
+- Google Search Console configurado + sitemaps enviados ✅
+- Artículos en primera persona plural ("During our testing...", "We found...")
+- Ratings no perfectos (evitar 9+/10 salvo casos excepcionales)
+- Contras reales en cada reseña
+- Prompt del agente con ángulo de nicho específico por idioma (no traducción literal)
 
 ---
 
 ## Próximos Pasos
 
-- [ ] **Reemplazar MPT con pipeline Flux + Ken Burns + FFmpeg**
-  - Crear cuenta en together.ai y obtener API key
-  - Nuevo `video_creator_flux.py`: Flux → Ken Burns (FFmpeg zoompan) → Edge TTS → subtítulos FFmpeg
-  - ~$0.003/imagen, 14 imágenes/video = $0.04/video
-- [ ] **Actualizar agente para guardar links de afiliado automáticamente** (cuando lleguen aprobaciones)
-- [ ] **Empezar publicación masiva** con `agent_web.py` (2-3/día semana 1)
-- [ ] **YouTube Shorts + TikTok** (mes 2, cuando haya tracción en el canal)
+- [ ] Terminar semana 1: Castmagic, OpusClip, Alternatives to Otter.ai
+- [ ] Confirmar Enforce HTTPS en GitHub Pages settings de ambos repos
+- [ ] Añadir comando `listicle` al agente para el artículo #10
+- [ ] Crear página "Advertise with us" en ambos sitios (monetización directa)
+- [ ] Activar Ezoic en ambos sitios (display ads de respaldo)
+- [ ] Reemplazar MPT con pipeline Flux + Ken Burns + FFmpeg para videos
