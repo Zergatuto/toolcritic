@@ -13,6 +13,7 @@ buildFuture = false
   description = "Honest, in-depth reviews and comparisons of AI tools for creators, freelancers and small businesses."
   keywords = ["AI tools", "AI reviews", "best AI tools", "AI comparison", "AI for creators"]
   author = "ToolCritic Team"
+  images = ["/images/og-default.png"]
   DateFormat = "January 2, 2006"
   defaultTheme = "auto"
   disableThemeToggle = false

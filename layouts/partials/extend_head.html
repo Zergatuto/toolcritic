@@ -1,0 +1,8 @@
+{{- if .IsPage }}
+{{- $sectionMap := dict "creators" "creadores" "real-estate" "inmobiliarias" "ecommerce" "tiendas-online" "reviews" "resenas" "alternatives" "alternativas" }}
+{{- $esSection := index $sectionMap .Section | default .Section }}
+{{- $slug := .File.TranslationBaseName }}
+<link rel="alternate" hreflang="en" href="https://toolcritic.co/{{ .Section }}/{{ $slug }}/">
+<link rel="alternate" hreflang="es" href="https://iaprobada.com/{{ $esSection }}/{{ $slug }}/">
+<link rel="alternate" hreflang="x-default" href="https://toolcritic.co/{{ .Section }}/{{ $slug }}/">
+{{- end }}
