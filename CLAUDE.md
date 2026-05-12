@@ -219,6 +219,37 @@ Para reemplazar placeholder `[ADD_AFFILIATE_LINK]` / `[AGREGAR_LINK_AFILIADO]` c
 
 ---
 
+## Plan de Contenido — Primeras 3 Semanas
+
+### Semana 1 — Creators
+| # | Herramienta | Tipo | Comando |
+|---|---|---|---|
+| 1 | Otter.ai | review | `--tool "Otter.ai" --url "https://otter.ai" --niche creators` |
+| 2 | Descript | review | `--tool "Descript" --url "https://descript.com" --niche creators` |
+| 3 | Castmagic | review | `--tool "Castmagic" --url "https://castmagic.io" --niche creators` |
+| 4 | OpusClip | review | `--tool "OpusClip" --url "https://opus.pro" --niche creators` |
+| 5 | Alternatives to Otter.ai | alternatives | `--type alternatives --tool "Otter.ai" --url "https://otter.ai" --niche creators` |
+
+### Semana 2 — Real Estate
+| # | Herramienta | Tipo | Comando |
+|---|---|---|---|
+| 6 | Lofty | review | `--tool "Lofty" --url "https://lofty.com" --niche real-estate` |
+| 7 | Structurely | review | `--tool "Structurely" --url "https://structurely.com" --niche real-estate` |
+| 8 | Canva | review | `--tool "Canva" --url "https://canva.com" --niche real-estate` |
+| 9 | ChatGPT | review | `--tool "ChatGPT" --url "https://openai.com/chatgpt" --niche real-estate` |
+| 10 | Best AI tools for real estate | listicle | *(manual o añadir comando listicle al agente)* |
+
+### Semana 3 — Ecommerce
+| # | Herramienta | Tipo | Comando |
+|---|---|---|---|
+| 11 | Shopify Magic | review | `--tool "Shopify Magic" --url "https://shopify.com" --niche ecommerce` |
+| 12 | Describely | review | `--tool "Describely" --url "https://describely.ai" --niche ecommerce` |
+| 13 | Tidio | review | `--tool "Tidio" --url "https://tidio.com" --niche ecommerce` |
+| 14 | Klaviyo | review | `--tool "Klaviyo" --url "https://klaviyo.com" --niche ecommerce` |
+| 15 | Alternatives to Jasper | alternatives | `--type alternatives --tool "Jasper AI" --url "https://jasper.ai" --niche ecommerce` |
+
+---
+
 ## Próximos Pasos
 
 - [ ] **Reemplazar MPT con pipeline Flux + Ken Burns + FFmpeg**
