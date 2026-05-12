@@ -49,6 +49,12 @@ The core editor is clean and distraction-free. You can work in "Command" mode (t
 
 ---
 
+## Screenshots
+
+![Screenshot 1](/images/reviews/jasper-ai/jasper_ingles.png)
+
+---
+
 ## Pricing
 
 Jasper offers two main pricing plans:
@@ -130,4 +136,4 @@ We'd recommend starting with the **7-day free trial** to run your own content th
 
 ---
 
-*Review methodology: ToolCritic tests all tools hands-on over a minimum four-week period. We use standardized content tasks across categories and compare output against at least three competing tools. Ratings are never influenced by affiliate relationships or vendor relationships.*
+*Review methodology: ToolCritic tests all tools hands-on over a minimum four-week period. We use standardized content tasks across categories and compare output against at least three competing tools.*

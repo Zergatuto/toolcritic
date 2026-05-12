@@ -51,6 +51,10 @@ The platform audits robots.txt, schema markup, indexing issues, and crawl errors
 
 ---
 
+## Screenshots
+
+![Screenshot 1](/images/reviews/writesonic/Captura_de_pantalla_2026-05-12_161126.png)
+
 ## Pricing
 
 Writesonic offers the following pricing tiers:
