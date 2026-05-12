@@ -9,8 +9,6 @@ ShowToc = true
 TocOpen = false
 +++
 
-*Disclosure: Some links in this review are affiliate links. We earn a small commission if you subscribe through our link, at no extra cost to you. This never influences our ratings.*
-
 ---
 
 ## Quick Verdict
@@ -56,7 +54,7 @@ The core editor is clean and distraction-free. You can work in "Command" mode (t
 Jasper has simplified its pricing compared to earlier word-count-based tiers, but "simple" doesn't mean cheap:
 
 - **Creator Plan — $49/month** (billed monthly) or ~$39/month annually. One user seat, one Brand Voice, access to Jasper Chat and templates. Unlimited word generation.
-- **Pro Plan — $69/month per seat** (billed monthly) or ~$59/month annually. Up to 5 Brand Voices, 10 knowledge assets, Campaigns feature, collaboration tools, and 3 user seats included.
+- **Pro Plan — $69/month** (billed monthly) or $59/month (billed annually). Up to 5 Brand Voices, 10 knowledge assets, Campaigns feature, collaboration tools, and 3 user seats included.
 - **Business Plan — Custom pricing.** Enterprise-level controls, SSO, API access, dedicated account management. Most reports from users place this in the $500–$2,000+/month range depending on seat count.
 
 **Important caveats:** The Surfer SEO integration requires an active Surfer subscription (starting at $89/month). Plagiarism checking via Copyscape is an add-on. If you want the full Jasper experience as marketed, budget meaningfully above the base plan price.
@@ -120,8 +118,6 @@ Jasper AI is a well-built, mature product that genuinely delivers for the right 
 But the honest assessment in 2026 is that Jasper's pricing has outpaced its differentiation for many users. If you're a solo operator or a small team, the gap between Jasper and cheaper alternatives doesn't justify a $49–$69/month per-seat investment. If you're a marketing department running coordinated campaigns across multiple channels with strict brand governance? Jasper probably pays for itself.
 
 We'd recommend starting with the **7-day free trial** to run your own content through the Brand Voice tool and test the Campaigns feature. That's ultimately the fastest way to know if it clicks for your workflow.
-
-**[Try Jasper AI free for 7 days →][ADD_AFFILIATE_LINK]**
 
 **Overall Rating: 7.2 / 10**
 

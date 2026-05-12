@@ -1,7 +1,7 @@
 # Contexto del Proyecto — Web (toolcritic.co + iaprobada.com)
 > Se carga automáticamente al abrir Claude Code en este directorio.
 > Actualizar al final de cada sesión con: "actualiza E:\Webpages\toolcritic\CLAUDE.md con lo que hicimos hoy"
-> Última actualización: 2026-05-12
+> Última actualización: 2026-05-12 (sesión 2)
 
 ---
 
@@ -56,7 +56,7 @@ El archivo `.github/workflows/hugo.yml` ya está configurado en los dos repos.
 - og:image default 1200×630 en `static/images/og-default.png` (ambos sitios)
 - RSS button oculto (`ShowRssButtonInSectionTermList = false`)
 - `generate_og_images.py` en `E:\Webpages\agent\` para regenerar imágenes OG
-- Enforce HTTPS: confirmar en GitHub Pages settings de cada repo
+- Enforce HTTPS: ✅ activado en GitHub Pages (ambos repos)
 
 ### Carpetas de contenido activas
 ```
@@ -70,6 +70,7 @@ toolcritic.co/         iaprobada.com/
 ### Artículos publicados
 - `creators/otter-ai` + `creadores/otter-ai`
 - `creators/descript` + `creadores/descript`
+- `creators/castmagic` + `creadores/castmagic` — generado, **pendiente revisión en dashboard** (precios JS-rendered, no scrapeables automáticamente)
 
 ---
 
@@ -86,12 +87,20 @@ toolcritic.co/         iaprobada.com/
 | `corrector.py` | Auto-corrige: regex para blocks, Claude Haiku para warns |
 | `publisher.py` | Guarda archivos por nicho + git push |
 | `scraper.py` | Obtiene info del sitio de la herramienta |
+| `review_state.py` | Estado editorial por artículo (JSON en `review_state/`) |
+| `editor_dashboard.py` | Dashboard Flask — puerta editorial antes de publicar |
 
 ### Pipeline automático
 ```
-generate → save draft → verify → fix (regex + Haiku) → re-verify → publish si pasa | draft si bloqueado
+generate → save draft → verify → fix (regex + Haiku) → re-verify
+  ↓ bloqueado/warnings        ↓ todo limpio
+  → estado en dashboard       → publish directo (con --publish)
+  → revisar manualmente
+  → agente aplica datos verificados → re-verify → publicar desde dashboard
 ```
-Cero intervención humana en el flujo estándar. Solo interviene el usuario si hay bloqueos irresolubles.
+
+**Flujo recomendado:** sin `--publish` para artículos nuevos. El dashboard es la puerta editorial.
+Solo usar `--publish` directo para artículos de bajo riesgo sin precios ni afiliados.
 
 ### Nichos disponibles
 `real-estate` | `ecommerce` | `creators` | `general`
@@ -99,12 +108,32 @@ Cero intervención humana en el flujo estándar. Solo interviene el usuario si h
 ### Tipos de artículo
 `review` (por defecto) | `alternatives`
 
-### Prompt del agente — mejoras aplicadas (2026-05-12)
-- **`prompt_focus` por nicho:** instrucción específica de ángulo para cada nicho/idioma
-- **Creators EN:** foco en podcast/video repurposing, NO "meeting tool"
-- **Creators ES:** prueba de acentos latinoamericanos + mini-metodología
-- **Divulgación condicional:** distinta cuando hay o no hay link de afiliado
-- **CTA limpio:** "Visit [Tool]" con URL real cuando no hay afiliado
+### Mejoras aplicadas al pipeline (2026-05-12)
+
+**generator.py:**
+- `_clean_response()` — elimina code fences ` ```toml ``` ` que Claude a veces envuelve alrededor del frontmatter TOML (Hugo no los parsea)
+- `tool_url` propagado a todas las funciones — CTA usa URL real de la herramienta cuando no hay afiliado (no slugify.com inventado)
+- `prompt_focus` por nicho: ángulo específico por nicho/idioma
+- Creators EN: foco en podcast/video repurposing, NO "meeting tool"
+- Creators ES: prueba de acentos latinoamericanos + mini-metodología
+- Divulgación condicional: distinta cuando hay o no hay link de afiliado
+
+**scraper.py:**
+- Ahora raspa homepage + pricing page (`/pricing`, `/plans`, `/pricing/`)
+- Devuelve sección `[PRICING PAGE]` separada para que el generador use precios reales
+- Limitación: sitios con precios JS-rendered (ej. Castmagic) no exponen precios en HTML → el verifier los bloquea correctamente
+
+**verifier.py:**
+- Nuevas reglas BLOCK: `[verificar en ...]` y `[verify at ...]` — placeholders que el corrector inserta cuando no puede verificar precios; ahora bloquean publicación automática
+
+**corrector.py:**
+- `apply_structured_edits(filepath, structured_data, notes)` — Claude Haiku aplica precios/links verificados manualmente al .md antes de re-verificar
+- Sanity check: si la respuesta tiene <70% de la longitud original, no sobreescribe
+
+**agent_web.py:**
+- Pasa `tool_url` al generador
+- Al terminar sin `--publish`, crea estado en `review_state/*.json` vía `create_state()`
+- `en_issues` y `es_issues` guardados por separado en el estado
 
 ---
 
@@ -113,21 +142,74 @@ Cero intervención humana en el flujo estándar. Solo interviene el usuario si h
 ```powershell
 cd "E:\Webpages\agent"
 
-# Reseña con nicho + publish automático (pipeline completo)
-py -3.11 agent_web.py generate --tool "Castmagic" --url "https://castmagic.io" --niche creators --publish
-py -3.11 agent_web.py generate --tool "Lofty" --url "https://lofty.com" --niche real-estate --publish
-py -3.11 agent_web.py generate --tool "Shopify Magic" --url "https://shopify.com" --niche ecommerce --publish
+# Flujo recomendado: generar sin --publish → revisar en dashboard → publicar desde dashboard
+py -3.11 agent_web.py generate --tool "Castmagic" --url "https://castmagic.io" --niche creators
+py -3.11 agent_web.py generate --tool "OpusClip" --url "https://opus.pro" --niche creators
+py -3.11 agent_web.py generate --tool "Lofty" --url "https://lofty.com" --niche real-estate
+py -3.11 agent_web.py generate --tool "Shopify Magic" --url "https://shopify.com" --niche ecommerce
 
 # Artículo de alternativas
-py -3.11 agent_web.py generate --type alternatives --tool "Otter.ai" --url "https://otter.ai" --niche creators --publish
+py -3.11 agent_web.py generate --type alternatives --tool "Otter.ai" --url "https://otter.ai" --niche creators
 
-# Modo borrador (revisar antes de publicar)
-py -3.11 agent_web.py generate --tool "Copy.ai" --url "https://copy.ai" --niche ecommerce
-py -3.11 agent_web.py approve copy-ai
+# Con links de afiliado (cuando los tengamos)
+py -3.11 agent_web.py generate --tool "Surfer SEO" --url "https://surferseo.com" --niche creators --affiliate-en "https://link-en" --affiliate-es "https://link-es"
 
-# Con links de afiliado
-py -3.11 agent_web.py generate --tool "Surfer SEO" --url "https://surferseo.com" --niche creators --affiliate-en "https://link-en" --affiliate-es "https://link-es" --publish
+# Publish directo (solo si no hay precios ni datos críticos que verificar)
+py -3.11 agent_web.py generate --tool "Tool" --url "https://tool.com" --niche creators --publish
 ```
+
+## Editor Dashboard
+
+**Iniciar:**
+```powershell
+cd "E:\Webpages\agent"
+py -3.11 editor_dashboard.py
+# → http://localhost:5050  (esta PC)
+# → http://{ip-local}:5050 (cualquier PC en la misma WiFi)
+```
+
+**Instalar dependencias (una vez):**
+```powershell
+py -3.11 -m pip install flask markdown python-dotenv
+```
+
+### Archivos del dashboard
+```
+E:\Webpages\agent\
+├── editor_dashboard.py       Flask app (puerto 5050, host 0.0.0.0)
+├── review_state.py           Estado editorial — JSON por artículo
+├── review_state/             Directorio con *.json (uno por slug)
+└── editor_templates/
+    ├── base.html             Layout, CSS, badges, botones
+    ├── index.html            Lista de artículos con filtros y sync
+    └── review.html           Vista de revisión: Preview / Markdown / Checks
+```
+
+### Estados del artículo
+| Estado | Significado |
+|---|---|
+| `needs_manual_input` | Generado con warnings — verificar datos manualmente |
+| `blocked` | Bloqueado por issues críticos |
+| `published_with_issues` | Publicado pero con warnings activos |
+| `agent_reviewing` | El agente está aplicando datos verificados + re-verificando |
+| `agent_failed` | El agente falló (ver error en dashboard) |
+| `ready_for_review` | Todos los checks manuales hechos — listo para enviar al agente |
+| `ready_to_publish` | El agente confirmó que está limpio — botón Publicar activo |
+| `published` | Publicado en ambos sitios |
+
+### Flujo editorial completo
+1. Generar artículo sin `--publish` → aparece en dashboard
+2. Dashboard → tab **Checks**: marcar checkboxes, rellenar precios/planes/afiliados, notas
+3. Clic **"Listo para revisión del agente"** → agente aplica datos + re-verifica en background
+4. Cuando el estado cambia a `ready_to_publish` → clic **"Publicar"**
+5. **Sync Articles** en el índice: sincroniza todos los artículos de ambos repos (preserva checks/notas existentes)
+
+### Capturas de pantalla
+Se guardan en:
+- `E:\Webpages\toolcritic\static\images\{section}\{slug}\` (EN)
+- `E:\Webpages\iaprobada\static\images\{section}\{slug}\` (ES)
+
+Subir desde el dashboard (tab Checks → formularios de upload al final).
 
 ---
 
@@ -138,7 +220,7 @@ py -3.11 agent_web.py generate --tool "Surfer SEO" --url "https://surferseo.com"
 |---|---|---|
 | 1 | Otter.ai | ✅ Publicado |
 | 2 | Descript | ✅ Publicado |
-| 3 | Castmagic | ⏳ Pendiente |
+| 3 | Castmagic | 🔶 Generado — revisar precios en dashboard |
 | 4 | OpusClip | ⏳ Pendiente |
 | 5 | Alternatives to Otter.ai | ⏳ Pendiente |
 
@@ -195,9 +277,16 @@ py -3.11 agent_web.py generate --tool "Surfer SEO" --url "https://surferseo.com"
 
 ## Próximos Pasos
 
-- [ ] Terminar semana 1: Castmagic, OpusClip, Alternatives to Otter.ai
-- [ ] Confirmar Enforce HTTPS en GitHub Pages settings de ambos repos
+- [ ] **Castmagic:** abrir dashboard → verificar precios manualmente → publicar
+- [ ] Terminar semana 1: OpusClip, Alternatives to Otter.ai
+- [x] Enforce HTTPS en GitHub Pages ✅
 - [ ] Añadir comando `listicle` al agente para el artículo #10
 - [ ] Crear página "Advertise with us" en ambos sitios (monetización directa)
 - [ ] Activar Ezoic en ambos sitios (display ads de respaldo)
 - [ ] Reemplazar MPT con pipeline Flux + Ken Burns + FFmpeg para videos
+
+## Notas técnicas
+
+**Code fence bug (resuelto 2026-05-12):** Claude a veces devuelve el frontmatter TOML envuelto en ` ```toml ``` `. Hugo renderiza eso como bloque de código en lugar de parsearlo. `_clean_response()` en generator.py lo elimina automáticamente. El artículo de Castmagic en iaprobada ya fue corregido manualmente.
+
+**Precios JS-rendered:** sitios como Castmagic renderizan precios con JavaScript. El scraper obtiene texto genérico ("per month, billed annually") pero no cifras. El verifier bloquea publicación directa → el artículo queda en dashboard para que el editor rellene precios manualmente.
