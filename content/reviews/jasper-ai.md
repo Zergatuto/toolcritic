@@ -51,15 +51,14 @@ The core editor is clean and distraction-free. You can work in "Command" mode (t
 
 ## Pricing
 
-Jasper has simplified its pricing compared to earlier word-count-based tiers, but "simple" doesn't mean cheap:
+Jasper offers two main pricing plans:
 
-- **Creator Plan — $49/month** (billed monthly) or ~$39/month annually. One user seat, one Brand Voice, access to Jasper Chat and templates. Unlimited word generation.
-- **Pro Plan — $69/month** (billed monthly) or $59/month (billed annually). Up to 5 Brand Voices, 10 knowledge assets, Campaigns feature, collaboration tools, and 3 user seats included.
-- **Business Plan — Custom pricing.** Enterprise-level controls, SSO, API access, dedicated account management. Most reports from users place this in the $500–$2,000+/month range depending on seat count.
+- **Pro Plan — $59/month** (billed annually) or $69/month (billed monthly). Up to 5 Brand Voices, 10 knowledge assets, Campaigns feature, collaboration tools, and 3 user seats included. Unlimited word generation.
+- **Business Plan — Custom pricing** (billed annually or monthly). Enterprise-level controls, SSO, API access, dedicated account management. Contact Jasper for a quote tailored to your needs.
 
 **Important caveats:** The Surfer SEO integration requires an active Surfer subscription (starting at $89/month). Plagiarism checking via Copyscape is an add-on. If you want the full Jasper experience as marketed, budget meaningfully above the base plan price.
 
-There is a **7-day free trial** on Creator and Pro plans — no credit card required at signup, which we appreciate.
+There is a **7-day free trial** on the Pro plan — no credit card required at signup, which we appreciate.
 
 ---
 
