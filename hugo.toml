@@ -40,29 +40,29 @@ buildFuture = false
 
 [menu]
   [[menu.main]]
-    identifier = "reviews"
-    name = "Reviews"
-    url = "/reviews/"
+    identifier = "real-estate"
+    name = "Real Estate"
+    url = "/real-estate/"
     weight = 10
   [[menu.main]]
-    identifier = "comparisons"
-    name = "Comparisons"
-    url = "/comparisons/"
+    identifier = "ecommerce"
+    name = "Ecommerce"
+    url = "/ecommerce/"
     weight = 20
   [[menu.main]]
-    identifier = "categories"
-    name = "Categories"
-    url = "/categories/"
+    identifier = "creators"
+    name = "Creators"
+    url = "/creators/"
     weight = 30
+  [[menu.main]]
+    identifier = "reviews"
+    name = "All Reviews"
+    url = "/reviews/"
+    weight = 40
   [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 40
-  [[menu.main]]
-    identifier = "author"
-    name = "Author"
-    url = "/author/"
     weight = 50
   [[menu.main]]
     identifier = "contact"
