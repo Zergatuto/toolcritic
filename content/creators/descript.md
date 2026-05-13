@@ -98,9 +98,9 @@ Auto-generated from the transcript, styled with brand colors and fonts. Fast and
 Descript's pricing as listed:
 
 - **Free** — 720p export, watermark-free, limited Underlord access, limited AI Speech trial, 100 AI credits one-time. In practice, the AI feature caps hit quickly — this tier is only useful for evaluating the transcript editor, not the repurposing workflow.
-- **Hobbyist** — $24/month (annual) or $16/month (monthly). 1080p export, Underlord access, Studio Sound, Remove Filler Words, Create Clips, AI Speech with voice cloning. This is the minimum viable tier for a working creator.
-- **Creator** — $35/month (annual) or $24/month (monthly). Full Underlord access, 20+ AI tools, AI video generation, royalty-free stock media, top-ups available for media hours and AI credits.
-- **Business** — $65/month (annual) or $60/month (monthly). Priority support and additional features for growing teams.
+- **Hobbyist** — $16/month (annual) or $24/month (monthly). 1080p export, Underlord access, Studio Sound, Remove Filler Words, Create Clips, AI Speech with voice cloning. This is the minimum viable tier for a working creator.
+- **Creator** — $24/month (annual) or $35/month (monthly). Full Underlord access, 20+ AI tools, AI video generation, royalty-free stock media, top-ups available for media hours and AI credits.
+- **Business** — $60/month (annual) or $65/month (monthly). Priority support and additional features for growing teams.
 - **Enterprise** — Custom pricing. For large organizations with specific needs.
 
 **Hidden cost flags:**
@@ -167,4 +167,4 @@ Descript has built something genuinely useful for the solo creator who is drowni
 
 If your content is talk-heavy and your biggest bottleneck is the hours between "finished recording" and "published everywhere," Descript belongs on your shortlist.
 
-[**Visit Descript →**](https://descript.com)
+[**Visit Descript →**](https://www.descript.com/pricing)

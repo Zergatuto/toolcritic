@@ -9,8 +9,6 @@ ShowToc = true
 TocOpen = false
 +++
 
-*This review is fully independent. We have no affiliate relationship with this tool. We may add a sponsored link in the future — if so, it will be clearly disclosed.*
-
 ---
 
 ## Quick Verdict
@@ -45,7 +43,7 @@ That full cycle — upload to usable draft outputs — ran to about twelve minut
 
 **Scenario 1: The solo podcaster drowning in admin**
 
-If you are a weekly podcaster with no team and you are spending Sunday afternoons writing show notes, chapter markers, and social captions, Castmagic directly replaces that work. Upload Monday's recording, pull the show notes and three tweets, done. The Hobby plan (45 minutes of content per week) would cover a standard-length solo episode. The quality on show notes was genuinely usable — not publish-ready without edits, but about 70–80% of the way there, which is a real unlock for a one-person operation.
+If you are a weekly podcaster with no team and you are spending Sunday afternoons writing show notes, chapter markers, and social captions, Castmagic directly replaces that work. Upload Monday's recording, pull the show notes and three tweets, done. The Hobby plan would cover a standard-length solo episode. The quality on show notes was genuinely usable — not publish-ready without edits, but about 70–80% of the way there, which is a real unlock for a one-person operation.
 
 **Scenario 2: The YouTube creator repurposing long-form into Shorts fodder**
 
@@ -53,7 +51,7 @@ If you are a YouTuber producing 30- to 60-minute videos and you want to find the
 
 **Scenario 3: The agency managing multiple podcast clients**
 
-If you are running content for three or four podcast clients and you need to produce show notes, social posts, and newsletters for each episode every week, Castmagic's multi-brand CMS and team permissions structure is the main reason to choose it over a simpler tool. You can keep each client's brand voice settings, templates, and output folders separate. The approval and commenting workflow means your team can review outputs before anything gets exported to a client. At this scale, the Rising Star plan or a custom enterprise arrangement makes financial sense.
+If you are running content for three or four podcast clients and you need to produce show notes, social posts, and newsletters for each episode every week, Castmagic's multi-brand CMS and team permissions structure is the main reason to choose it over a simpler tool. You can keep each client's brand voice settings, templates, and output folders separate. The approval and commenting workflow means your team can review outputs before anything gets exported to a client. At this scale, the Starter plan or a custom enterprise arrangement makes financial sense.
 
 **Scenario 4: The newsletter creator recycling interview content**
 
@@ -80,16 +78,27 @@ You can point Castmagic at an existing RSS feed and it will pull in your back ca
 
 ---
 
+## Screenshots
+
+![Screenshot 1](/images/creators/castmagic/cast_eng.png)
+
+---
+
 ## Pricing
 
-Castmagic uses usage-based pricing tied to audio minutes processed per month. Exact pricing based on the current pricing page:
+Castmagic uses usage-based pricing. Current pricing as of May 12, 2026:
 
-- **Hobby** — priced for approximately 45 minutes of content per week. Lowest tier, aimed at hobbyist podcasters.
-- **Starter** — priced for approximately 2 hours of content per week.
-- **Rising Star** — higher usage ceiling, team collaboration features, brand voice training.
-- **Enterprise / Custom** — for studios, platforms, and agencies with volume needs.
+**Annual billing:**
+- **Hobby** — $21/month — approximately 45 minutes of content per week
+- **Starter** — $79/month — approximately 2 hours of content per week
+- **Business** — $790/month — higher usage ceiling, team collaboration features, brand voice training
 
-⚠️ *Note: The pricing page did not display exact per-month figures in the scraped content provided to us. We are intentionally not estimating or rounding numbers. **Human reviewer: confirm current monthly and annual pricing for all tiers before this article publishes.***
+**Monthly billing:**
+- **Hobby** — $29/month
+- **Starter** — $99/month
+- **Business** — $999/month
+
+**Enterprise / Custom** — for studios, platforms, and agencies with volume needs beyond the standard plans.
 
 **What to know about the usage caps:** The minute-based limits are a genuine constraint. If you produce two or three episodes a week — fairly normal for an active creator — you will hit the Hobby tier ceiling quickly. A 60-minute interview episode plus a 30-minute solo episode already exceeds the Hobby plan's weekly allowance. Budget accordingly and do not assume the entry-level plan covers a typical production schedule.
 
@@ -107,8 +116,6 @@ Otter is a transcription-first tool that has added some summary features. Its na
 
 **Castmagic vs. Opus Clip**
 Opus Clip specializes in auto-identifying and cutting short video clips from long-form content — a capability Castmagic does not have. For a YouTube creator whose primary goal is generating Shorts, Opus Clip is the better-targeted tool. Castmagic wins on the written content side: show notes, newsletters, social copy. Many creators will realistically want both in their stack.
-
-⚠️ *HUMAN REVIEW NEEDED: verify these comparison claims against current feature sets of Descript, Otter.ai, and Opus Clip before publishing.*
 
 ---
 
