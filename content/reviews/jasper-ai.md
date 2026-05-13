@@ -23,7 +23,7 @@ Jasper AI (formerly Jarvis) launched in 2021 and quickly became the go-to AI wri
 
 The company has raised over $130 million in funding and serves tens of thousands of businesses, from solo consultants to enterprise marketing departments at companies like Morningstar, HubSpot, and VMware. That pedigree matters — Jasper has had years to refine its UX, templates, and integrations in ways that newer tools simply haven't.
 
-During our testing across a four-week period in early 2026, we used Jasper daily across blog content, social media copy, and long-form marketing campaigns. Here's what we actually found.
+Based on our research of Jasper's features, official documentation, and verified user reports across blog content, social media copy, and long-form marketing campaigns, here's what we actually found.
 
 ---
 
@@ -92,7 +92,7 @@ There is a **7-day free trial** on the Pro plan — no credit card required at s
 
 **The template library feels bloated.** Fifty-plus templates sounds impressive until you realize many overlap substantially or serve edge cases you'll never encounter. A curated library of 20 great templates would serve users better than 50 mediocre ones.
 
-**Customer support has mixed reviews.** During our testing period, a billing issue took four days and three email exchanges to resolve. This aligns with recurring complaints we've seen in user reviews on G2 and Trustpilot.
+**Customer support has mixed reviews.** According to recurring complaints on G2 and Trustpilot, billing issues can take several days and multiple email exchanges to resolve — a pattern consistent across many user reports.
 
 **No native image generation.** Competitors like Copy.ai and newer entrants bundle basic AI image capabilities. Jasper still relies entirely on third-party tools for visual content, which breaks the "all-in-one marketing platform" positioning.
 
@@ -136,4 +136,4 @@ We'd recommend starting with the **7-day free trial** to run your own content th
 
 ---
 
-*Review methodology: ToolCritic tests all tools hands-on over a minimum four-week period. We use standardized content tasks across categories and compare output against at least three competing tools.*
+*Our reviews are based on thorough research of official documentation, feature pages, and verified user reports. We are not sponsored by the tools we review.*

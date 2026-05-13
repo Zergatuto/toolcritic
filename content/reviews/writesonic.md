@@ -25,7 +25,7 @@ Writesonic started life as an AI copywriting assistant — one of dozens that fl
 
 The core problem Writesonic is solving is real and urgent: traditional SEO rankings mean less when a user asks an AI assistant "what are the best running shoes for marathon training?" and the AI recommends three brands — none of which is yours. Writesonic claims to track over 2 billion real AI conversations, run your target prompts daily across major AI platforms, identify citation gaps, and then use AI agents to create content, earn citations, and fix technical issues — automatically.
 
-It's an ambitious proposition. During our two-week hands-on evaluation, we tested the prompt tracking dashboard, the competitive intelligence explorer, the content optimization agent, and the technical audit tools. Here's what we actually found.
+It's an ambitious proposition. Based on our research of the prompt tracking dashboard, the competitive intelligence explorer, the content optimization agent, and the technical audit tools — here's what we actually found.
 
 ---
 

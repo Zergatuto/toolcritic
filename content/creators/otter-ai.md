@@ -43,7 +43,7 @@ Upload a recorded video walkthrough or talking-head video, let Otter transcribe 
 
 ### Step-by-Step Repurposing Workflow
 
-Here's the workflow we ran during testing for a solo creator publishing weekly podcast episodes:
+Here's the typical workflow for a solo creator publishing weekly podcast episodes:
 
 1. **Record episode** (any setup — Riverside, Zoom, Zencastr, doesn't matter)
 2. **Upload audio or video file** to Otter.ai via the dashboard's import feature
