@@ -210,6 +210,15 @@ Se guardan en:
 - `E:\Webpages\iaprobada\static\images\{section}\{slug}\` (ES)
 
 Subir desde el dashboard (tab Checks → formularios de upload al final).
+Cuando el agente corre, detecta automáticamente las imágenes en esa carpeta y las inserta en el artículo antes de la sección de Conclusión/Precios.
+
+### Afiliado
+Checkbox "Tiene link de afiliado" en el dashboard:
+- **Desmarcado** → el agente elimina todos los placeholders de afiliado y texto de divulgación del artículo
+- **Marcado** → muestra campos de URL para EN y ES, el agente los aplica al artículo
+
+### Artículos publicados con issues
+El estado `published_with_issues` (en lugar de `blocked`) se usa para artículos ya en vivo que tienen issues. Muestra un banner amarillo de advertencia en lugar del rojo de bloqueo.
 
 ---
 
@@ -290,3 +299,7 @@ Subir desde el dashboard (tab Checks → formularios de upload al final).
 **Code fence bug (resuelto 2026-05-12):** Claude a veces devuelve el frontmatter TOML envuelto en ` ```toml ``` `. Hugo renderiza eso como bloque de código en lugar de parsearlo. `_clean_response()` en generator.py lo elimina automáticamente. El artículo de Castmagic en iaprobada ya fue corregido manualmente.
 
 **Precios JS-rendered:** sitios como Castmagic renderizan precios con JavaScript. El scraper obtiene texto genérico ("per month, billed annually") pero no cifras. El verifier bloquea publicación directa → el artículo queda en dashboard para que el editor rellene precios manualmente.
+
+**Metodología honesta (resuelto 2026-05-12):** El generador ya no instruye a Claude a afirmar testing de semanas. Usa voz editorial basada en investigación ("Based on our research...", "Según nuestra investigación..."). Artículos ya publicados corregidos: jasper-ai.md, writesonic.md, otter-ai.md (EN).
+
+**Email de contacto:** Las páginas de contacto apuntan a `contact@toolcritic.co` y `contacto@iaprobada.com`. Pendiente configurar reenvío de correo en Porkbun (toolcritic) y Namecheap (iaprobada) para que lleguen al correo personal.

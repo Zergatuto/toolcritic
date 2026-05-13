@@ -159,4 +159,4 @@ Castmagic does the unglamorous, time-consuming work of turning a recorded episod
 
 For a solo podcaster or a small content team, that is a legitimate case. For a video creator whose repurposing strategy is mostly short-form clips, it is the wrong tool.
 
-[Visit Castmagic →](https://castmagic.io)
+[Visit Castmagic →](https://www.castmagic.io/es/pricing)
