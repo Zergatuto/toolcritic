@@ -89,13 +89,19 @@ Auto-generated from the transcript, styled with brand colors and fonts. Fast and
 
 ---
 
+## Screenshots
+
+![Screenshot 1](/images/creators/descript/descript_engl.png)
+
 ## Pricing
 
 Descript's pricing as listed:
 
-- **Free** — 720p export, watermark-free, limited Underlord access, limited AI Speech trial. In practice, the AI feature caps hit quickly — this tier is only useful for evaluating the transcript editor, not the repurposing workflow.
-- **Hobbyist** — [verificar en https://descript.com/pricing]. 1080p export, Underlord access, Studio Sound, Remove Filler Words, Create Clips, AI Speech with voice cloning. This is the minimum viable tier for a working creator.
-- **Creator** — [verificar en https://descript.com/pricing]. Full Underlord access, 20+ AI tools, AI video generation, royalty-free stock media, top-ups available for media hours and AI credits.
+- **Free** — 720p export, watermark-free, limited Underlord access, limited AI Speech trial, 100 AI credits one-time. In practice, the AI feature caps hit quickly — this tier is only useful for evaluating the transcript editor, not the repurposing workflow.
+- **Hobbyist** — $24/month (annual) or $16/month (monthly). 1080p export, Underlord access, Studio Sound, Remove Filler Words, Create Clips, AI Speech with voice cloning. This is the minimum viable tier for a working creator.
+- **Creator** — $35/month (annual) or $24/month (monthly). Full Underlord access, 20+ AI tools, AI video generation, royalty-free stock media, top-ups available for media hours and AI credits.
+- **Business** — $65/month (annual) or $60/month (monthly). Priority support and additional features for growing teams.
+- **Enterprise** — Custom pricing. For large organizations with specific needs.
 
 **Hidden cost flags:**
 - Team seats are billed separately even on the Hobbyist plan
@@ -162,7 +168,3 @@ Descript has built something genuinely useful for the solo creator who is drowni
 If your content is talk-heavy and your biggest bottleneck is the hours between "finished recording" and "published everywhere," Descript belongs on your shortlist.
 
 [**Visit Descript →**](https://descript.com)
-
----
-
-*This review is fully independent. We have no affiliate relationship with this tool. We may add a sponsored link in the future — if so, it will be clearly disclosed.*
