@@ -136,4 +136,4 @@ We'd recommend starting with the **7-day free trial** to run your own content th
 
 ---
 
-*Our reviews are based on thorough research of official documentation, feature pages, and verified user reports. We are not sponsored by the tools we review.*
+*Our reviews are based on thorough research of official documentation, feature pages, and verified user reports.*
