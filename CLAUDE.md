@@ -1,7 +1,7 @@
 # Contexto del Proyecto — Web (toolcritic.co + iaprobada.com)
 > Se carga automáticamente al abrir Claude Code en este directorio.
 > Actualizar al final de cada sesión con: "actualiza E:\Webpages\toolcritic\CLAUDE.md con lo que hicimos hoy"
-> Última actualización: 2026-05-14 (sesión 3)
+> Última actualización: 2026-05-15 (sesión 4)
 
 ---
 
@@ -58,6 +58,24 @@ El archivo `.github/workflows/hugo.yml` ya está configurado en los dos repos.
 - `generate_og_images.py` en `E:\Webpages\agent\` para regenerar imágenes OG
 - Enforce HTTPS: ✅ activado en GitHub Pages (ambos repos)
 
+### Cloudflare ✅ (configurado 2026-05-15)
+Ambos dominios en Cloudflare (plan Free), nameservers activos.
+
+| Configuración | toolcritic.co | iaprobada.com |
+|---|---|---|
+| Zone ID | `4b0cee7a7af4e56e4391a62199c044bd` | `5fee626f5aae08bb4ad871d663bf7dde` |
+| Always Use HTTPS | ✅ ON | ✅ ON |
+| HSTS | ✅ 6 meses + includeSubDomains | ✅ 6 meses + includeSubDomains |
+| X-Content-Type-Options | ✅ nosniff | ✅ nosniff |
+| X-Frame-Options | ✅ SAMEORIGIN | ✅ SAMEORIGIN |
+| Referrer-Policy | ✅ strict-origin-when-cross-origin | ✅ strict-origin-when-cross-origin |
+| DNS propagado | ⏳ Porkbun propagando | ✅ Activo |
+
+**Credenciales API (no commitear):**
+- Email: `toolcritic.io@gmail.com`
+- Global API Key: en `$env:CF_KEY` (pedir al usuario si se necesita de nuevo)
+- Auth: `X-Auth-Email` + `X-Auth-Key` headers
+
 ### Carpetas de contenido activas
 ```
 toolcritic.co/         iaprobada.com/
@@ -68,9 +86,16 @@ toolcritic.co/         iaprobada.com/
 ```
 
 ### Artículos publicados
-- `creators/otter-ai` + `creadores/otter-ai`
-- `creators/descript` + `creadores/descript`
-- `creators/castmagic` + `creadores/castmagic` — generado, **pendiente revisión en dashboard** (precios JS-rendered, no scrapeables automáticamente)
+| Slug | toolcritic.co | iaprobada.com | rating |
+|---|---|---|---|
+| descript | ✅ | ✅ | 8.0 / 7.4 |
+| castmagic | ✅ | ✅ | 7.5 / 7.2 |
+| opusclip | ✅ | ✅ | 7.5 / 7.5 |
+| jasper-ai | ✅ (reviews/) | ✅ (resenas/) | 7.2 / 7.2 |
+| writesonic | ✅ (reviews/) | ✅ (resenas/) | 7.8 / 7.4 |
+| otter-ai | draft | draft | — |
+
+Todos los artículos publicados tienen: `tool_name`, `rating`, schema JSON-LD, alt text descriptivo, títulos <60 chars.
 
 ---
 
@@ -309,19 +334,57 @@ El estado `published_with_issues` (en lugar de `blocked`) se usa para artículos
 
 ---
 
+## Roadmap SEO — Estado
+
+### Sprint 1 ✅ (2026-05-14/15)
+- [x] Schema JSON-LD (Review, BreadcrumbList, Organization) en extend_head.html
+- [x] `tool_name` + `rating` en frontmatter de todos los artículos publicados
+- [x] Generador: títulos <60 chars, disclosure estandarizado, rating/tool_name automático
+- [x] Alt text descriptivo en corrector.py (artículos nuevos)
+- [x] Alt text actualizado en artículos existentes
+- [x] Fix code fence bug opusclip iaprobada
+
+### Sprint 2 ✅ (2026-05-15)
+- [x] Hreflang para homepage (.IsHome) y secciones (.IsSection)
+- [x] Author `Person` en JSON-LD (Alex Turner / Alejandro Torres → /author/)
+- [x] About pages expandidas con metodología, criterios de rating, independencia editorial
+
+### Sprint 3 ✅ (2026-05-15)
+- [x] 6 imágenes renombradas con nombres SEO (`{tool}-review-screenshot.png`)
+- [x] Títulos acortados <60 chars en todos los artículos existentes
+- [x] Section _index.md con cuerpo de contenido (real-estate, ecommerce, inmobiliarias, tiendas-online)
+
+### Sprint 4 ✅ (2026-05-15)
+- [x] `noindex = true` en privacy.md y contact.md (ambos sitios)
+- [x] `meta referrer` en extend_head.html
+- [x] `static/robots.txt` con Allow + Sitemap
+- [x] `extend_post_content.html` — Related Posts automático por tags
+
+### Cloudflare ✅ (2026-05-15)
+- [x] Ambos dominios en Cloudflare (Free plan)
+- [x] Always HTTPS ON en ambas zonas
+- [x] HSTS 6 meses + includeSubDomains
+- [x] Transform Rules: X-Content-Type-Options, X-Frame-Options, Referrer-Policy
+- [ ] Verificar headers toolcritic.co cuando Porkbun propague (~horas)
+
 ## Próximos Pasos
 
-- [ ] **Castmagic:** abrir dashboard → verificar precios manualmente → publicar
-- [ ] Terminar semana 1: OpusClip (pendiente ejecutar), Alternatives to Otter.ai
-- [x] Enforce HTTPS en GitHub Pages ✅
-- [x] Fix GSC "página alternativa con canonical": `disableKinds` en ambos hugo.toml ✅
-- [x] Solicitar indexación de `/resenas/jasper-ai/` en Search Console ✅
-- [x] Keyword researcher integrado al pipeline ✅
+### Contenido
+- [ ] Publicar otter-ai (draft en ambos repos) — revisar y cambiar `draft = false`
+- [ ] Semana 2: Real Estate (Lofty, Structurely, Canva, ChatGPT)
+- [ ] Semana 3: Ecommerce (Shopify Magic, Describely, Tidio, Klaviyo)
+- [ ] Estrategia de clusters SEO + backlinks
 - [ ] Instalar pytrends: `py -3.11 -m pip install pytrends`
-- [ ] Añadir comando `listicle` al agente para el artículo #10
-- [ ] Crear página "Advertise with us" en ambos sitios (monetización directa)
+- [ ] Añadir comando `listicle` al agente para artículos de tipo lista
+
+### Monetización
+- [ ] Crear página "Advertise with us" en ambos sitios
+- [ ] Retomar PartnerStack cuando haya tráfico
 - [ ] Activar Ezoic en ambos sitios (display ads de respaldo)
-- [ ] Reemplazar MPT con pipeline Flux + Ken Burns + FFmpeg para videos
+
+### Técnico
+- [ ] Configurar reenvío de correo en Porkbun (`contact@toolcritic.co`) y Namecheap (`contacto@iaprobada.com`)
+- [ ] Verificar headers de toolcritic.co cuando propague DNS de Porkbun
 
 ## Notas técnicas
 
