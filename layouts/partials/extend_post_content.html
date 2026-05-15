@@ -1,0 +1,11 @@
+{{- $related := where (.Site.RegularPages.Related .) "Draft" false | first 3 }}
+{{- with $related }}
+<div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+  <h3 style="margin-bottom:.75rem;font-size:1rem;font-weight:600">Related Reviews</h3>
+  <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem">
+    {{- range . }}
+    <li><a href="{{ .Permalink }}" style="text-decoration:underline">{{ .Title }}</a></li>
+    {{- end }}
+  </ul>
+</div>
+{{- end }}

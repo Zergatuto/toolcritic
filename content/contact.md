@@ -3,6 +3,7 @@ date = '2026-05-10T00:00:00-03:00'
 draft = false
 title = 'Contact'
 description = 'Get in touch with the ToolCritic team.'
+noindex = true
 +++
 
 ## Get in Touch

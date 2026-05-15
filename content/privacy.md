@@ -3,6 +3,7 @@ date = '2026-05-10T00:00:00-03:00'
 draft = false
 title = 'Privacy Policy'
 description = 'Privacy policy and affiliate disclosure for ToolCritic.'
+noindex = true
 +++
 
 *Last updated: May 10, 2026*
