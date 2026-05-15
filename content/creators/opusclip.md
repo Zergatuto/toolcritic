@@ -1,5 +1,5 @@
 +++
-title = "OpusClip Review 2026: Can It Turn One Long Video Into a Week of Content?"
+title = "OpusClip Review 2026: AI Short-Form Clips, Tested"
 date = "2026-05-14T13:00:10"
 draft = false
 description = "OpusClip review for YouTubers and podcasters: pricing, free plan limits, captions, and how it stacks up against Descript and CapCut."
@@ -80,7 +80,7 @@ OpusClip allows posting to multiple profiles per social platform from within the
 
 ## Screenshots
 
-![Screenshot 1](/images/creators/opusclip/opus_ingles.png)
+![OpusClip AI clip selection interface showing viral score and caption preview](/images/creators/opusclip/opusclip-review-screenshot.png)
 
 ## Pricing
 

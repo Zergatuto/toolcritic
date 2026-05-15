@@ -1,5 +1,5 @@
 +++
-title = "Jasper AI Review 2026: Is It Still Worth the Premium Price Tag?"
+title = "Jasper AI Review 2026: Is the Premium Price Worth It?"
 date = "2026-05-09T19:01:26"
 draft = false
 description = "Honest Jasper AI review based on real testing. We cover features, pricing, pros, cons & who should actually use it in 2026."
@@ -53,7 +53,7 @@ The core editor is clean and distraction-free. You can work in "Command" mode (t
 
 ## Screenshots
 
-![Screenshot 1](/images/reviews/jasper-ai/jasper_ingles.png)
+![Jasper AI editor showing document mode with Brand Voice and templates sidebar](/images/reviews/jasper-ai/jasper-ai-review-screenshot.png)
 
 ---
 

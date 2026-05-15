@@ -1,7 +1,7 @@
 # Contexto del Proyecto — Web (toolcritic.co + iaprobada.com)
 > Se carga automáticamente al abrir Claude Code en este directorio.
 > Actualizar al final de cada sesión con: "actualiza E:\Webpages\toolcritic\CLAUDE.md con lo que hicimos hoy"
-> Última actualización: 2026-05-12 (sesión 2)
+> Última actualización: 2026-05-14 (sesión 3)
 
 ---
 
@@ -81,8 +81,9 @@ toolcritic.co/         iaprobada.com/
 
 | Archivo | Responsabilidad |
 |---|---|
-| `agent_web.py` | Orquestador — generate + verify + fix + publish |
-| `generator.py` | Artículos EN+ES con Claude API (niche-aware) |
+| `agent_web.py` | Orquestador — keyword research + generate + verify + fix + publish |
+| `generator.py` | Artículos EN+ES con Claude API (niche-aware + keyword context) |
+| `keyword_researcher.py` | Keywords EN+ES via Google Autocomplete + pytrends (gratis, sin auth) |
 | `verifier.py` | Verifica placeholders, precios, superlativos, disclosure |
 | `corrector.py` | Auto-corrige: regex para blocks, Claude Haiku para warns |
 | `publisher.py` | Guarda archivos por nicho + git push |
@@ -92,11 +93,14 @@ toolcritic.co/         iaprobada.com/
 
 ### Pipeline automático
 ```
-generate → save draft → verify → fix (regex + Haiku) → re-verify
-  ↓ bloqueado/warnings        ↓ todo limpio
-  → estado en dashboard       → publish directo (con --publish)
-  → revisar manualmente
-  → agente aplica datos verificados → re-verify → publicar desde dashboard
+keyword_research (Autocomplete + Trends EN+ES)
+  → scrape tool site
+  → generate EN+ES (con keyword context diferenciado por idioma)
+  → save draft → verify → fix (regex + Haiku) → re-verify
+    ↓ bloqueado/warnings        ↓ todo limpio
+    → estado en dashboard       → publish directo (con --publish)
+    → revisar manualmente
+    → agente aplica datos verificados → re-verify → publicar desde dashboard
 ```
 
 **Flujo recomendado:** sin `--publish` para artículos nuevos. El dashboard es la puerta editorial.
@@ -107,6 +111,27 @@ Solo usar `--publish` directo para artículos de bajo riesgo sin precios ni afil
 
 ### Tipos de artículo
 `review` (por defecto) | `alternatives`
+
+### Mejoras aplicadas al pipeline (2026-05-14)
+
+**keyword_researcher.py (nuevo):**
+- Consulta Google Autocomplete para el tool en EN (US) y ES (MX): búsquedas base, review, vs, alternativas
+- Consulta pytrends (Google Trends) para keywords relacionadas y emergentes por idioma
+- `format_keyword_context()` convierte los datos en un bloque de texto para los prompts
+- Tolerante a fallos: si pytrends falla (rate limit de Google), el autocomplete sigue funcionando
+- Dependencia: `py -3.11 -m pip install pytrends`
+
+**generator.py:**
+- `generate_articles()` acepta `keyword_en` y `keyword_es`
+- Cada función `_generate_review_*` y `_generate_alternatives_*` recibe `keyword_context`
+- El contexto de keywords se inserta en el prompt después del NICHE FOCUS — el artículo EN ataca lo que buscan en inglés, el ES lo que buscan en español (ángulos distintos, no traducción)
+
+**agent_web.py:**
+- Llama a `research_keywords()` entre el scraping y la generación
+- Pasa `keyword_en` y `keyword_es` a `generate_articles()`
+
+**hugo.toml (ambos sitios, 2026-05-14):**
+- `disableKinds = ["taxonomy", "term"]` — elimina páginas /tags/, /categories/, /series/ que Google reportaba como "página alternativa con canonical adecuado" en Search Console
 
 ### Mejoras aplicadas al pipeline (2026-05-12)
 
@@ -287,8 +312,12 @@ El estado `published_with_issues` (en lugar de `blocked`) se usa para artículos
 ## Próximos Pasos
 
 - [ ] **Castmagic:** abrir dashboard → verificar precios manualmente → publicar
-- [ ] Terminar semana 1: OpusClip, Alternatives to Otter.ai
+- [ ] Terminar semana 1: OpusClip (pendiente ejecutar), Alternatives to Otter.ai
 - [x] Enforce HTTPS en GitHub Pages ✅
+- [x] Fix GSC "página alternativa con canonical": `disableKinds` en ambos hugo.toml ✅
+- [x] Solicitar indexación de `/resenas/jasper-ai/` en Search Console ✅
+- [x] Keyword researcher integrado al pipeline ✅
+- [ ] Instalar pytrends: `py -3.11 -m pip install pytrends`
 - [ ] Añadir comando `listicle` al agente para el artículo #10
 - [ ] Crear página "Advertise with us" en ambos sitios (monetización directa)
 - [ ] Activar Ezoic en ambos sitios (display ads de respaldo)

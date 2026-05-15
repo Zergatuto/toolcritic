@@ -1,5 +1,5 @@
 +++
-title = "Descript Review 2026: The AI Editor That Turns One Recording Into a Week of Content"
+title = "Descript Review 2026: Best AI Editor for Creators?"
 date = "2026-05-12T02:06:41"
 draft = false
 description = "Descript review for YouTubers, podcasters & creators: transcription, repurposing, AI editing — tested hands-on with real workflow examples."
@@ -93,7 +93,7 @@ Auto-generated from the transcript, styled with brand colors and fonts. Fast and
 
 ## Screenshots
 
-![Screenshot 1](/images/creators/descript/descript_engl.png)
+![Descript text-based video editor showing transcript timeline and Underlord AI panel](/images/creators/descript/descript-review-screenshot.png)
 
 ## Pricing
 

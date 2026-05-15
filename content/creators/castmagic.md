@@ -1,5 +1,5 @@
 +++
-title = "Castmagic Review 2026: Turn One Podcast or Video Into a Week of Content — Is It Worth It?"
+title = "Castmagic Review 2026: Best Tool for Podcast Repurposing?"
 date = "2026-05-12T15:07:47"
 draft = false
 description = "Castmagic review for podcasters, YouTubers & creators: transcription, repurposing, show notes, pricing, and how it compares to Descript and Otter."
@@ -82,7 +82,7 @@ You can point Castmagic at an existing RSS feed and it will pull in your back ca
 
 ## Screenshots
 
-![Screenshot 1](/images/creators/castmagic/cast_eng.png)
+![Castmagic dashboard showing transcript and content repurposing panel](/images/creators/castmagic/castmagic-review-screenshot.png)
 
 ---
 
