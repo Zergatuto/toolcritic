@@ -5,6 +5,8 @@ draft = false
 description = "Castmagic review for podcasters, YouTubers & creators: transcription, repurposing, show notes, pricing, and how it compares to Descript and Otter."
 tags = ["castmagic", "ai tools", "creators"]
 categories = ["Creators"]
+tool_name = "Castmagic"
+rating = 7.5
 ShowToc = true
 TocOpen = false
 +++

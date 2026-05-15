@@ -5,6 +5,8 @@ draft = false
 description = "Descript review for YouTubers, podcasters & creators: transcription, repurposing, AI editing — tested hands-on with real workflow examples."
 tags = ["descript", "ai tools", "creators"]
 categories = ["Creators"]
+tool_name = "Descript"
+rating = 8.0
 ShowToc = true
 TocOpen = false
 +++

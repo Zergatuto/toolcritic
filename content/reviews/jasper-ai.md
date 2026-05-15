@@ -5,6 +5,8 @@ draft = false
 description = "Honest Jasper AI review based on real testing. We cover features, pricing, pros, cons & who should actually use it in 2026."
 tags = ["ai writing", "content marketing", "copywriting tool", "jasper ai", "ai content generator"]
 categories = ["AI Writing Tools"]
+tool_name = "Jasper AI"
+rating = 7.2
 ShowToc = true
 TocOpen = false
 +++

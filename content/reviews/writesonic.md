@@ -5,6 +5,8 @@ draft = false
 description = "Writesonic reviewed: AI search visibility tracking, GEO optimization, and agentic content execution. Is it worth it for marketing teams in 2026?"
 tags = ["GEO", "AI SEO", "content marketing", "AI search", "generative engine optimization"]
 categories = ["AI Marketing Tools"]
+tool_name = "Writesonic"
+rating = 7.8
 ShowToc = true
 TocOpen = false
 +++
