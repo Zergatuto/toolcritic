@@ -7,6 +7,20 @@
 <link rel="alternate" hreflang="x-default" href="https://toolcritic.co/{{ .Section }}/{{ $slug }}/">
 {{- end }}
 
+{{- if .IsHome }}
+<link rel="alternate" hreflang="en" href="https://toolcritic.co/">
+<link rel="alternate" hreflang="es" href="https://iaprobada.com/">
+<link rel="alternate" hreflang="x-default" href="https://toolcritic.co/">
+{{- end }}
+
+{{- if .IsSection }}
+{{- $sectionMap := dict "creators" "creadores" "real-estate" "inmobiliarias" "ecommerce" "tiendas-online" "reviews" "resenas" "alternatives" "alternativas" }}
+{{- $esSection := index $sectionMap .Section | default .Section }}
+<link rel="alternate" hreflang="en" href="https://toolcritic.co/{{ .Section }}/">
+<link rel="alternate" hreflang="es" href="https://iaprobada.com/{{ $esSection }}/">
+<link rel="alternate" hreflang="x-default" href="https://toolcritic.co/{{ .Section }}/">
+{{- end }}
+
 {{- /* JSON-LD: Article / Review */}}
 {{- if .IsPage }}
 <script type="application/ld+json">
@@ -18,7 +32,7 @@
   "datePublished": "{{ .Date.Format "2006-01-02" }}",
   "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
   "url": "{{ .Permalink }}",
-  "author": {"@type": "Organization", "name": "ToolCritic", "url": "https://toolcritic.co"},
+  "author": {"@type": "Person", "name": "Alex Turner", "url": "https://toolcritic.co/author/"},
   "publisher": {"@type": "Organization", "name": "ToolCritic", "url": "https://toolcritic.co"}{{- if .Params.rating }},
   "itemReviewed": {"@type": "SoftwareApplication", "name": {{ .Params.tool_name | default "Software" | jsonify }}},
   "reviewRating": {"@type": "Rating", "ratingValue": "{{ .Params.rating }}", "bestRating": "10", "worstRating": "1"}{{- end }}
